@@ -454,7 +454,13 @@
     transition: box-shadow 0.3s;
   }
   .sw-card:hover .sw-icon { box-shadow: 0 0 20px var(--card-accent, var(--blue)); }
-
+.sw-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+  
   .sw-status {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 4px 10px;

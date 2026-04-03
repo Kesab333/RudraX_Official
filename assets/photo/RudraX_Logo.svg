@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ██████╗ ██╗   ██╗██████╗ ██████╗  █████╗ ██╗  ██╗
+  ██╔══██╗██║   ██║██╔══██╗██╔══██╗██╔══██╗╚██╗██╔╝
+  ██████╔╝██║   ██║██║  ██║██████╔╝███████║ ╚███╔╝
+  ██╔══██╗██║   ██║██║  ██║██╔══██╗██╔══██║ ██╔██╗
+  ██║  ██║╚██████╔╝██████╔╝██║  ██║██║  ██║██╔╝ ██╗
+  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
+  RudraX — Premium Brand Logo  |  Monochrome Edition
+  Transparent Background  |  Vector-Scale Ready
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 900 480"
+     width="900"
+     height="480"
+     role="img"
+     aria-label="RudraX Logo">
+
+  <title>RudraX</title>
+
+  <defs>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  METALLIC BEVEL GRADIENT (across bar)  -->
+    <!-- ═══════════════════════════════════════ -->
+    <linearGradient id="metalBevel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#787878"/>
+      <stop offset="8%"   stop-color="#484848"/>
+      <stop offset="22%"  stop-color="#1c1c1c"/>
+      <stop offset="50%"  stop-color="#060606"/>
+      <stop offset="78%"  stop-color="#1c1c1c"/>
+      <stop offset="92%"  stop-color="#484848"/>
+      <stop offset="100%" stop-color="#727272"/>
+    </linearGradient>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  OVERLAY SHEEN (subtle top highlight)  -->
+    <!-- ═══════════════════════════════════════ -->
+    <linearGradient id="topSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="35%"  stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  CENTER GLOW (intersection ambiance)   -->
+    <!-- ═══════════════════════════════════════ -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  RUDRA TEXT GRADIENT (white-to-silver) -->
+    <!-- ═══════════════════════════════════════ -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="55%"  stop-color="#F0F0F0"/>
+      <stop offset="100%" stop-color="#C8C8C8"/>
+    </linearGradient>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  ACCENT LINE GRADIENT                  -->
+    <!-- ═══════════════════════════════════════ -->
+    <linearGradient id="lineGradL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#888888" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#888888" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="lineGradR" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#888888" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#888888" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  FILTERS                               -->
+    <!-- ═══════════════════════════════════════ -->
+
+    <!-- Deep drop shadow for primary X arm -->
+    <filter id="shadowDeep" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16"
+        flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+
+    <!-- Lighter shadow for secondary arm (to avoid double-dark crossing) -->
+    <filter id="shadowLight" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10"
+        flood-color="#000000" flood-opacity="0.30"/>
+    </filter>
+
+    <!-- RUDRA text depth shadow -->
+    <filter id="textShadow" x="-8%" y="-25%" width="116%" height="150%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6"
+        flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+
+    <!-- Subtle inner glow mask for bar edges -->
+    <filter id="edgeGlow" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+      <feOffset in="blur" dx="0" dy="-1" result="offsetBlur"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.2" result="color"/>
+      <feComposite in="color" in2="offsetBlur" operator="in" result="inner"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="inner"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+
+  <!-- ╔═══════════════════════════════════════════╗ -->
+  <!-- ║             X  M A R K                   ║ -->
+  <!-- ║   Two geometric bars — the core symbol   ║ -->
+  <!-- ╚═══════════════════════════════════════════╝ -->
+
+  <!--
+    Bar dimensions: 102 px wide × 420 px tall
+    Rect center:    (450, 240) — both bars share this center
+    Rotation:       ±45° about the center point
+    Corner radius:  14 px — modern, refined edge
+  -->
+
+  <!-- Bar A  ╲  (rotate −45°: upper-left → lower-right) -->
+  <rect x="399" y="30" width="102" height="420" rx="14" ry="14"
+        transform="rotate(-45 450 240)"
+        fill="url(#metalBevel)"
+        filter="url(#shadowDeep)"/>
+
+  <!-- Bar A — top sheen overlay -->
+  <rect x="399" y="30" width="102" height="420" rx="14" ry="14"
+        transform="rotate(-45 450 240)"
+        fill="url(#topSheen)"/>
+
+  <!-- Bar B  ╱  (rotate +45°: upper-right → lower-left) -->
+  <rect x="399" y="30" width="102" height="420" rx="14" ry="14"
+        transform="rotate(45 450 240)"
+        fill="url(#metalBevel)"
+        filter="url(#shadowLight)"/>
+
+  <!-- Bar B — top sheen overlay -->
+  <rect x="399" y="30" width="102" height="420" rx="14" ry="14"
+        transform="rotate(45 450 240)"
+        fill="url(#topSheen)"/>
+
+  <!-- Center intersection ambient glow -->
+  <ellipse cx="450" cy="240" rx="96" ry="96"
+           fill="url(#centerGlow)"/>
+
+  <!-- Thin diamond accent at the intersection center -->
+  <rect x="437" y="227" width="26" height="26" rx="2" ry="2"
+        transform="rotate(45 450 240)"
+        fill="none"
+        stroke="#888888"
+        stroke-width="0.8"
+        opacity="0.35"/>
+
+
+  <!-- ╔═══════════════════════════════════════════╗ -->
+  <!-- ║          R U D R A   T E X T             ║ -->
+  <!-- ║   White letterforms over the X mark      ║ -->
+  <!-- ╚═══════════════════════════════════════════╝ -->
+
+  <!-- Accent line — LEFT fade-in -->
+  <line x1="92" y1="242" x2="268" y2="242"
+        stroke="url(#lineGradL)"
+        stroke-width="1.2"
+        stroke-linecap="round"/>
+
+  <!-- Accent line — RIGHT fade-out -->
+  <line x1="632" y1="242" x2="808" y2="242"
+        stroke="url(#lineGradR)"
+        stroke-width="1.2"
+        stroke-linecap="round"/>
+
+  <!-- "RUDRA" — primary logotype text -->
+  <text x="450" y="270"
+        font-family="'Arial Black', 'Franklin Gothic Heavy', Impact, 'Helvetica Neue', sans-serif"
+        font-size="78"
+        font-weight="900"
+        letter-spacing="22"
+        text-anchor="middle"
+        fill="url(#textGrad)"
+        filter="url(#textShadow)">RUDRA</text>
+
+  <!-- Thin rule below RUDRA text -->
+  <line x1="306" y1="288" x2="594" y2="288"
+        stroke="#888888"
+        stroke-width="0.8"
+        stroke-linecap="round"
+        opacity="0.45"/>
+
+  <!-- Brand tagline — "RudraX" word-mark in refined small caps -->
+  <text x="450" y="316"
+        font-family="'Arial', 'Helvetica Neue', Helvetica, sans-serif"
+        font-size="13"
+        font-weight="400"
+        letter-spacing="9.5"
+        text-anchor="middle"
+        fill="#b0b0b0"
+        opacity="0.75">RUDRAX</text>
+
+
+  <!-- ╔═══════════════════════════════════════════╗ -->
+  <!-- ║          CORNER  REGISTRATION            ║ -->
+  <!-- ║  Micro tick marks — optional brand grid  ║ -->
+  <!-- ╚═══════════════════════════════════════════╝ -->
+
+  <!-- Upper-left registration tick -->
+  <g opacity="0.18" stroke="#cccccc" stroke-width="1" stroke-linecap="round">
+    <line x1="48" y1="60"  x2="68"  y2="60"/>
+    <line x1="48" y1="60"  x2="48"  y2="80"/>
+  </g>
+
+  <!-- Upper-right registration tick -->
+  <g opacity="0.18" stroke="#cccccc" stroke-width="1" stroke-linecap="round">
+    <line x1="852" y1="60"  x2="832" y2="60"/>
+    <line x1="852" y1="60"  x2="852" y2="80"/>
+  </g>
+
+  <!-- Lower-left registration tick -->
+  <g opacity="0.18" stroke="#cccccc" stroke-width="1" stroke-linecap="round">
+    <line x1="48" y1="420" x2="68"  y2="420"/>
+    <line x1="48" y1="420" x2="48"  y2="400"/>
+  </g>
+
+  <!-- Lower-right registration tick -->
+  <g opacity="0.18" stroke="#cccccc" stroke-width="1" stroke-linecap="round">
+    <line x1="852" y1="420" x2="832" y2="420"/>
+    <line x1="852" y1="420" x2="852" y2="400"/>
+  </g>
+
+</svg>

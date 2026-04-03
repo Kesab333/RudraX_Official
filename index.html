@@ -584,7 +584,7 @@
     background: linear-gradient(90deg, transparent, var(--feat-color, var(--blue)), transparent);
     transform: scaleX(0); transition: transform 0.4s;
   }
-  .feat-card:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
+  .feat-card:hover { background: rgba(184, 90, 90, 0.096); border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
   .feat-card:hover::after { transform: scaleX(1); }
 
   .feat-icon {
@@ -595,8 +595,8 @@
     background: rgba(255,255,255,0.04);
     border: 1px solid var(--border-glass);
   }
-  .feat-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
-  .feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+  .feat-title { font-weight: 700; font-size: 15px; color: #bae46d; margin-bottom: 8px; }
+  .feat-desc { font-size: 13px; color: var(--text-secondary); color: rgba(235, 245, 255, 0.82); line-height: 1.65; }
 
   /* ============ STATUS ============ */
   #status { background: transparent; }
@@ -863,9 +863,13 @@
   /* Loading overlay */
   .loader {
     position: fixed; inset: 0;
-    background: transparent;
+    background-color: #000000;
+    background-image: url("assets/photo/RudraX_logo.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 9000;
-    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    display: flex; align-items: center; justify-content: center; padding-top: 350px; flex-direction: column;
     gap: 20px;
     transition: opacity 0.5s, visibility 0.5s;
   }
@@ -878,7 +882,7 @@
   }
   .loader-bar-wrap { width: 200px; height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
   .loader-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--purple)); border-radius: 2px; width: 0; transition: width 0.8s var(--transition); }
-  .loader-text { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.15em; }
+  .loader-text { font-family: var(--font-mono); font-size: 11px; color: rgba(240, 244, 255, 0.85); letter-spacing: 0.15em; }
 
   /* ============ UNIVERSE BACKGROUND SYSTEM — FIXED CANVAS ============ */
 
@@ -1222,7 +1226,7 @@ footer {
 
 <!-- Loader -->
 <div class="loader" id="loader">
-  <div class="loader-logo">RUDRAX</div>
+  <div class="loader-logo"></div>
   <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
   <div class="loader-text">INITIALIZING ECOSYSTEM<span class="blink">_</span></div>
 </div>

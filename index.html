@@ -109,9 +109,10 @@
     display: block;
   }
   .nav-logo-mark {
-    width: 32px; height: 32px;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    border-radius: 8px;
+    width: 42px; height: 42px;
+    background: transparent;
+    border-radius: 0px;
+    box-shadow: none;
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display);
     font-size: 14px; font-weight: 900;
@@ -120,8 +121,7 @@
     overflow: hidden;
   }
   .nav-logo-mark::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+    display: none;
   }
   .nav-logo-text {
     font-family: var(--font-display);
@@ -572,8 +572,9 @@
 
   .feat-card {
     padding: 28px;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-glass);
+    background: rgba(12, 16, 32, 0.55);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
     border-radius: var(--r-lg);
     transition: all 0.4s var(--transition);
     position: relative; overflow: hidden;
@@ -864,7 +865,7 @@
   .loader {
     position: fixed; inset: 0;
     background-color: #000000;
-    background-image: url("assets/photo/RudraX_Logo.svg");
+    background-image: url("assets/photo/RudraX_logo.svg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

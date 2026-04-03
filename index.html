@@ -384,7 +384,7 @@
   .stat-label { font-size: 12px; color: var(--text-secondary); letter-spacing: 0.08em; margin-top: 4px; text-transform: uppercase; }
 
   /* ============ SECTIONS SHARED ============ */
-  section { padding: 100px 2rem; position: relative; }
+  section { padding: 100px 2rem; position: relative; background: transparent;}
   .container { max-width: 1200px; margin: 0 auto; }
 
   .section-label {
@@ -425,7 +425,7 @@
   }
 
   /* ============ SOFTWARE GRID ============ */
-  #software { background: var(--bg-deep); }
+  #software { background: transparent; }
 
   .software-header {
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -560,7 +560,7 @@
 
   /* ============ FEATURES ============ */
   #features {
-    background: linear-gradient(180deg, var(--bg-void) 0%, var(--bg-panel) 50%, var(--bg-void) 100%);
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.25), transparent);
   }
 
   .features-grid {
@@ -599,7 +599,7 @@
   .feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
 
   /* ============ STATUS ============ */
-  #status { background: var(--bg-deep); }
+  #status { background: transparent; }
 
   .status-grid {
     display: grid;
@@ -863,7 +863,7 @@
   /* Loading overlay */
   .loader {
     position: fixed; inset: 0;
-    background: var(--bg-void);
+    background: transparent;
     z-index: 9000;
     display: flex; align-items: center; justify-content: center; flex-direction: column;
     gap: 20px;
@@ -1092,10 +1092,10 @@
   #foreground-moon-layer {
     position: fixed;
     left: 50%;
-    bottom: -35vh;
+    bottom: -55vh;
     transform: translateX(-50%);
-    width: 90vw;
-    max-width: 1400px;
+    width: 110vw;
+    max-width: 1600px;
     height: auto;
     z-index: 4;
     pointer-events: none;
@@ -1139,6 +1139,21 @@
   .hero-grid { opacity: 0.35 !important; }
   .orb-1, .orb-2, .orb-3 { opacity: 0.5; }
 
+/* ---- Transparent STYLES ---- */
+
+#status,
+#updates,
+footer {
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0,0,0,0.50),
+        transparent
+    );
+
+}
+  
   /* ---- Reduced motion ---- */
   @media (prefers-reduced-motion: reduce) {
     .space-planet { animation: none !important; }

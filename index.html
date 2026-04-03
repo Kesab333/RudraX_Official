@@ -880,102 +880,51 @@
   .loader-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--purple)); border-radius: 2px; width: 0; transition: width 0.8s var(--transition); }
   .loader-text { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.15em; }
 
-  /* ============ UNIVERSE BACKGROUND SYSTEM ============ */
+  /* ============ UNIVERSE BACKGROUND SYSTEM — FIXED CANVAS ============ */
 
-  /* Override hero to allow universe layers */
-  #hero {
-    background: transparent !important;
-  }
-
-  /* Layer: deep space base */
-  #universe-bg {
+  /* The universe layer: one fixed container holding ALL background elements.
+     Nothing inside scrolls. Content scrolls on top via .page-content. */
+  .universe-layer {
     position: fixed;
     inset: 0;
-    z-index: -10;
-    background:
-      radial-gradient(ellipse 120% 80% at 50% 0%, #0a0a1a 0%, #03030a 60%, #000005 100%);
-    pointer-events: none;
-  }
-
-  /* Layer: stars */
-  #stars-layer {
-    position: fixed;
-    inset: 0;
-    z-index: -9;
-    pointer-events: none;
-    will-change: transform;
-    transform: translateZ(0);
-    animation: starsDrift 180s linear infinite;
-  }
-  #stars-layer-2 {
-    position: fixed;
-    inset: 0;
-    z-index: -9;
-    pointer-events: none;
-    will-change: transform;
-    transform: translateZ(0);
-    animation: starsDrift2 240s linear infinite;
-  }
-  @keyframes starsDrift {
-    0% { transform: translateY(0) translateZ(0); }
-    100% { transform: translateY(-60px) translateZ(0); }
-  }
-  @keyframes starsDrift2 {
-    0% { transform: translateY(0) translateX(0) translateZ(0); }
-    100% { transform: translateY(-40px) translateX(-20px) translateZ(0); }
-  }
-
-  /* Far planets layer */
-  #far-planets-layer {
-    position: fixed;
-    inset: 0;
-    z-index: -8;
-    pointer-events: none;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-
-  /* Mid planets layer */
-  #mid-planets-layer {
-    position: fixed;
-    inset: 0;
-    z-index: -7;
-    pointer-events: none;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-
-  /* Moon layer */
-  #foreground-moon-layer {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    pointer-events: none;
-    width: 65vw;
-    max-width: 900px;
-    will-change: transform;
-    overflow: hidden;
-  }
-  #moon-img {
     width: 100%;
-    display: block;
-    transform-origin: center center;
-    transform: rotate(0deg);
-    will-change: transform;
-    filter: brightness(0.85) contrast(1.1);
-  }
-  /* Only show top half of moon */
-  #foreground-moon-layer {
-    height: 50vw;
-    max-height: 450px;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
     overflow: hidden;
-    display: flex;
-    align-items: flex-start;
   }
 
-  /* Planet base style */
+  /* Page content scrolls OVER the fixed universe */
+  .page-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Deep space base */
+  #universe-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 0%, #0b0b1e 0%, #04040e 55%, #000008 100%);
+  }
+
+  /* Star canvases — absolutely inside the fixed universe layer */
+  #stars-layer,
+  #stars-layer-2 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Planet containers — absolutely positioned inside universe layer */
+  #far-planets-layer,
+  #mid-planets-layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Planet base */
   .space-planet {
     position: absolute;
     border-radius: 50%;
@@ -983,7 +932,7 @@
     transform: translateZ(0);
   }
 
-  /* Planet: Earth-like top right */
+  /* Earth-like planet — top right */
   .planet-earth {
     width: 130px;
     height: 130px;
@@ -996,7 +945,7 @@
       inset 8px 8px 20px rgba(100,180,255,0.3),
       0 0 40px rgba(30,107,181,0.25),
       0 0 80px rgba(30,107,181,0.1);
-    animation: planetFloat1 90s ease-in-out infinite, planetSpin1 200s linear infinite;
+    animation: planetFloat1 90s ease-in-out infinite;
     overflow: hidden;
   }
   .planet-earth::before {
@@ -1017,7 +966,7 @@
     background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.15) 0%, transparent 40%);
   }
 
-  /* Planet: Red/Mars top left */
+  /* Mars — top left */
   .planet-mars {
     width: 60px;
     height: 60px;
@@ -1030,7 +979,7 @@
       inset 4px 4px 10px rgba(220,150,120,0.25),
       0 0 20px rgba(160,67,30,0.2),
       0 0 50px rgba(160,67,30,0.08);
-    animation: planetFloat2 75s ease-in-out infinite, planetSpin2 160s linear infinite;
+    animation: planetFloat2 75s ease-in-out infinite;
   }
   .planet-mars::before {
     content: '';
@@ -1042,7 +991,7 @@
       radial-gradient(circle at 30% 25%, rgba(255,220,200,0.1) 0%, transparent 35%);
   }
 
-  /* Planet: Brown gas giant mid left */
+  /* Brown gas giant — mid left */
   .planet-brown {
     width: 45px;
     height: 45px;
@@ -1055,10 +1004,10 @@
       inset 3px 3px 8px rgba(200,150,100,0.2),
       0 0 15px rgba(139,90,43,0.15),
       0 0 40px rgba(139,90,43,0.06);
-    animation: planetFloat3 110s ease-in-out infinite, planetSpin3 180s linear infinite;
+    animation: planetFloat3 110s ease-in-out infinite;
   }
 
-  /* Distant tiny planets */
+  /* Tiny distant planets */
   .planet-tiny-1 {
     width: 18px; height: 18px;
     top: 30%; right: 20%;
@@ -1083,7 +1032,7 @@
     opacity: 0.35;
   }
 
-  /* Planet animations - very subtle float */
+  /* Planet float keyframes */
   @keyframes planetFloat1 {
     0%, 100% { transform: translateY(0px) translateX(0px) translateZ(0); }
     25% { transform: translateY(-8px) translateX(4px) translateZ(0); }
@@ -1100,18 +1049,6 @@
     40% { transform: translateY(-5px) translateX(2px) translateZ(0); }
     70% { transform: translateY(-8px) translateX(-3px) translateZ(0); }
   }
-  @keyframes planetSpin1 {
-    0% { filter: brightness(0.9) hue-rotate(0deg); }
-    100% { filter: brightness(0.9) hue-rotate(5deg); }
-  }
-  @keyframes planetSpin2 {
-    0% { filter: brightness(0.9) hue-rotate(0deg); }
-    100% { filter: brightness(0.9) hue-rotate(3deg); }
-  }
-  @keyframes planetSpin3 {
-    0% { filter: brightness(0.9) hue-rotate(0deg); }
-    100% { filter: brightness(0.9) hue-rotate(4deg); }
-  }
   @keyframes planetFloat4 {
     0%, 100% { transform: translateY(0px) translateZ(0); }
     50% { transform: translateY(-10px) translateZ(0); }
@@ -1125,136 +1062,144 @@
     50% { transform: translateY(-6px) translateZ(0); }
   }
 
-  /* Atmospheric glow behind moon */
-  #moon-glow {
-    position: fixed;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80vw;
-    height: 400px;
-    background: radial-gradient(ellipse at 50% 100%, rgba(120,140,180,0.12) 0%, rgba(80,100,140,0.06) 40%, transparent 70%);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* Override hero bg and grid so universe shows through */
-  .hero-bg {
-    opacity: 0.3 !important;
-  }
-  .hero-grid {
-    opacity: 0.4 !important;
-  }
-  .orb-1, .orb-2, .orb-3 {
-    opacity: 0.6;
-  }
-
-  /* Nebula atmospheric clouds */
+  /* Nebula clouds — inside universe layer */
   .nebula-cloud {
-    position: fixed;
+    position: absolute;
     border-radius: 50%;
     filter: blur(100px);
     pointer-events: none;
-    z-index: -9;
-    will-change: transform;
-    transform: translateZ(0);
   }
   .nebula-1 {
     width: 600px; height: 400px;
     top: -100px; right: -150px;
     background: radial-gradient(ellipse, rgba(15,25,70,0.8) 0%, transparent 70%);
-    animation: nebulaFloat1 150s ease-in-out infinite;
   }
   .nebula-2 {
     width: 500px; height: 350px;
     bottom: 200px; left: -100px;
     background: radial-gradient(ellipse, rgba(20,10,50,0.7) 0%, transparent 70%);
-    animation: nebulaFloat2 180s ease-in-out infinite;
   }
   .nebula-3 {
     width: 700px; height: 300px;
     top: 40%; left: 20%;
     background: radial-gradient(ellipse, rgba(5,15,40,0.5) 0%, transparent 70%);
-    animation: nebulaFloat3 200s ease-in-out infinite;
-  }
-  @keyframes nebulaFloat1 {
-    0%, 100% { transform: translateY(0) scale(1) translateZ(0); }
-    50% { transform: translateY(-30px) scale(1.05) translateZ(0); }
-  }
-  @keyframes nebulaFloat2 {
-    0%, 100% { transform: translateY(0) translateX(0) translateZ(0); }
-    50% { transform: translateY(20px) translateX(15px) translateZ(0); }
-  }
-  @keyframes nebulaFloat3 {
-    0%, 100% { transform: translateY(0) translateX(0) translateZ(0); }
-    50% { transform: translateY(-15px) translateX(-20px) translateZ(0); }
   }
 
-  /* Reduced motion */
+  /* ---- MOON: fixed, large, only upper half visible, continuous rotation ---- */
+
+  /* The moon wrapper is fixed to the viewport bottom-center.
+     bottom: -35vh pushes the lower half below the screen edge — no clipping needed. */
+  #foreground-moon-layer {
+    position: fixed;
+    left: 50%;
+    bottom: -35vh;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-width: 1400px;
+    height: auto;
+    z-index: 4;
+    pointer-events: none;
+    will-change: transform;
+    overflow: visible;
+  }
+
+  /* Moon image: continuous slow rotation.
+     The rotation is applied on the image itself so translateX(-50%) on the
+     parent container is never disturbed. */
+  #moon-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform-origin: center center;
+    will-change: transform;
+    filter: brightness(0.88) contrast(1.08);
+    animation: moonRotate 120s linear infinite;
+  }
+
+  @keyframes moonRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Atmospheric glow sitting just behind the moon */
+  #moon-glow {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 350px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(120,140,180,0.10) 0%, rgba(80,100,140,0.05) 40%, transparent 70%);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* Dim the existing hero overlays so the universe shows through cleanly */
+  .hero-bg { opacity: 0.25 !important; }
+  .hero-grid { opacity: 0.35 !important; }
+  .orb-1, .orb-2, .orb-3 { opacity: 0.5; }
+
+  /* ---- Reduced motion ---- */
   @media (prefers-reduced-motion: reduce) {
-    #stars-layer, #stars-layer-2,
-    .space-planet, .nebula-cloud {
-      animation: none !important;
-    }
-    #moon-img {
-      transform: none !important;
-    }
+    .space-planet { animation: none !important; }
+    #moon-img { animation: none !important; }
   }
 
-  /* Mobile adjustments */
+  /* ---- Mobile ---- */
   @media (max-width: 768px) {
     #foreground-moon-layer {
       width: 85vw;
-      height: 45vw;
+      bottom: -28vh;
     }
     .planet-earth { width: 80px; height: 80px; }
-    .planet-mars { width: 40px; height: 40px; }
+    .planet-mars  { width: 40px; height: 40px; }
     .planet-brown { width: 30px; height: 30px; }
   }
 </style>
 </head>
 <body>
-<!-- ===== UNIVERSE BACKGROUND SYSTEM ===== -->
+<!-- ===== UNIVERSE LAYER — single fixed canvas, never scrolls ===== -->
+<div class="universe-layer">
 
-<!-- Deep space base -->
-<div id="universe-bg"></div>
+  <!-- Deep space base -->
+  <div id="universe-bg"></div>
 
-<!-- Nebula atmospheric clouds -->
-<div class="nebula-cloud nebula-1"></div>
-<div class="nebula-cloud nebula-2"></div>
-<div class="nebula-cloud nebula-3"></div>
+  <!-- Nebula clouds -->
+  <div class="nebula-cloud nebula-1"></div>
+  <div class="nebula-cloud nebula-2"></div>
+  <div class="nebula-cloud nebula-3"></div>
 
-<!-- Stars layer 1 -->
-<canvas id="stars-layer"></canvas>
+  <!-- Star canvases -->
+  <canvas id="stars-layer"></canvas>
+  <canvas id="stars-layer-2"></canvas>
 
-<!-- Stars layer 2 -->
-<canvas id="stars-layer-2"></canvas>
+  <!-- Far tiny planets -->
+  <div id="far-planets-layer">
+    <div class="space-planet planet-tiny-1"></div>
+    <div class="space-planet planet-tiny-2"></div>
+    <div class="space-planet planet-tiny-3"></div>
+  </div>
 
-<!-- Far planets -->
-<div id="far-planets-layer">
-  <div class="space-planet planet-tiny-1"></div>
-  <div class="space-planet planet-tiny-2"></div>
-  <div class="space-planet planet-tiny-3"></div>
+  <!-- Mid planets -->
+  <div id="mid-planets-layer">
+    <div class="space-planet planet-mars"></div>
+    <div class="space-planet planet-brown"></div>
+    <div class="space-planet planet-earth"></div>
+  </div>
+
 </div>
+<!-- /universe-layer -->
 
-<!-- Mid planets -->
-<div id="mid-planets-layer">
-  <div class="space-planet planet-mars"></div>
-  <div class="space-planet planet-brown"></div>
-</div>
-
-<!-- Earth-like planet top right (rendered separately so it floats over content edge) -->
-<div id="far-planets-layer" style="z-index:-6;">
-  <div class="space-planet planet-earth"></div>
-</div>
-
-<!-- Moon atmospheric glow -->
+<!-- Moon atmospheric glow (fixed, sits behind moon) -->
 <div id="moon-glow"></div>
 
-<!-- Fixed half moon -->
+<!-- Fixed half moon — sits outside .page-content so it stays fixed -->
 <div id="foreground-moon-layer">
   <img id="moon-img" src="assets/photo/moon.png" alt="" draggable="false">
 </div>
+
+<!-- ===== PAGE CONTENT — scrolls over the fixed universe ===== -->
+<div class="page-content">
 
 <div class="center-bg-logo">
   <img src="assets/logo/logo.png" alt="Background Logo">
@@ -1929,9 +1874,10 @@ window.addEventListener('scroll', () => {
     const dpr = window.devicePixelRatio || 1;
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    canvas.style.position = 'fixed';
+    // Canvas is inside .universe-layer (position:fixed), so absolute fills it perfectly
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.position = 'absolute';
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.pointerEvents = 'none';
@@ -1986,28 +1932,9 @@ window.addEventListener('scroll', () => {
   window.addEventListener('resize', initStars);
 })();
 
-// ===== MOON SCROLL ROTATION =====
-(function() {
-  const moonImg = document.getElementById('moon-img');
-  if (!moonImg) return;
-
-  let currentRotation = 0;
-  let targetRotation = 0;
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener('scroll', function() {
-    const delta = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-    targetRotation += delta * 0.05;
-  }, { passive: true });
-
-  function animateMoon() {
-    currentRotation += (targetRotation - currentRotation) * 0.06;
-    moonImg.style.transform = `rotate(${currentRotation}deg)`;
-    requestAnimationFrame(animateMoon);
-  }
-  animateMoon();
-})();
+// Moon rotation is handled by CSS animation (moonRotate keyframe).
+// No scroll-based JS rotation needed.
 </script>
+</div><!-- /page-content -->
 </body>
 </html>
